@@ -9,8 +9,7 @@ category varchar(30),
 rental_price decimal(10,2),
 status varchar(10),
 author varchar(30),
-publisher varchar(30)
-);
+publisher varchar(30));
 
 --creating branch table 
 drop table if exists branch;
@@ -18,8 +17,7 @@ create table branch(
 branch_id varchar(10) primary key,
 manager_id varchar(10),
 branch_address varchar(30),
-contact_no varchar(15)
-);
+contact_no varchar(15));
 
 --why not use int:
 --mobile numbers are not numbers for calculation — you won’t add, subtract, or multiply them.
@@ -34,16 +32,14 @@ emp_name varchar(30),
 position varchar(30),
 salary decimal(10,2),
 branch_id varchar(8),
-foreign key (branch_id) references branch(branch_id)
-);
+foreign key (branch_id) references branch(branch_id));
 
 drop table if exists members;
 create table members(
 member_id varchar(10) primary key,
 member_name varchar(30),
 member_address varchar(30),
-reg_date date
-);
+reg_date date);
 
 drop table if exists issued_status;
 create table issued_status(
@@ -55,8 +51,7 @@ issued_book_isbn varchar(50),
 issued_emp_id varchar(10),
 foreign key (issued_member_id) references members(member_id),
 foreign key (issued_emp_id) references employees(emp_id),
-foreign key (issued_book_isbn) references books(isbn)
-);
+foreign key (issued_book_isbn) references books(isbn));
 
 drop table if exists return_status;
 create table return_status(
@@ -65,8 +60,7 @@ issued_id varchar(30),
 return_book_name varchar(80),
 return_date date,
 return_book_isbn varchar(50),
-foreign key (return_book_isbn) references books(isbn)
-);
+foreign key (return_book_isbn) references books(isbn));
 
 --another method of adding foreign key
 alter table issued_status
@@ -237,12 +231,9 @@ select * from return_status ;
 select * from employees
 CREATE TABLE branch_reports AS
 SELECT 
-  b.branch_id,
-  b.manager_id,
-  COUNT(ist.issued_id) AS number_book_issued,
-  COUNT(rs.return_id) AS number_of_book_return,
-  SUM(bk.rental_price) AS total_revenue
-FROM issued_status AS ist
+   b.branch_id, b.manager_id, COUNT(ist.issued_id) AS number_book_issued, COUNT(rs.return_id) AS number_of_book_return,
+SUM(bk.rental_price) AS total_revenue
+ FROM issued_status AS ist
 JOIN employees AS e ON e.emp_id = ist.issued_emp_id
 JOIN branch AS b ON e.branch_id = b.branch_id
 LEFT JOIN return_status AS rs ON rs.issued_id = ist.issued_id
