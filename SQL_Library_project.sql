@@ -218,7 +218,7 @@ where isbn= i_isbn ;
 end
 $$;
 
-call procedure ('Rs123,IS134);
+call procedure ('Rs123,IS134');
 
 
 --QUESTION -15 Branch Performance Report
