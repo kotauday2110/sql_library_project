@@ -29,13 +29,12 @@ This project demonstrates the implementation of a **Library Management System** 
 - **Task 11:** Create a table of books where the rental price is above a certain threshold.
 - **Task 12:** Retrieve the list of books that have not yet been returned.
 - **Task 13:** Identify members who have overdue books (assume a 30-day return period). Display member ID, name, book title, issue date, and days overdue.
-- **Task 14:** Update the status of books in the `books` table to "Yes" when they are returned (based on entries in the `return_status` table).
-- **Task 15:** Generate a performance report for each branch showing:
+- **Task 14:** Generate a performance report for each branch showing:
   - Number of books issued
   - Number of books returned
   - Total revenue from rentals
-- **Task 16:** Use CTAS to create a new table `active_members` containing members who issued at least one book in the last 2 months.
-- **Task 17:** Identify the top 3 employees who processed the most book issues. Display employee name, number of books processed, and their branch.
+- **Task 15:** Use CTAS to create a new table `active_members` containing members who issued at least one book in the last 2 months.
+- **Task 16:** Identify the top 3 employees who processed the most book issues. Display employee name, number of books processed, and their branch.
 
 ---
 
