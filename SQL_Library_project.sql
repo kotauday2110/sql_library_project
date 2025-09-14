@@ -183,45 +183,8 @@ select * from books
 select * from issued_status;
 select * from return_status ;
 
---QUESTION 14:Update Book Status on Return
-Write a query to update the status of books in the books table to "Yes" when they are returned (based on entries in the return_status table).
 
--- we can do it manually but a very long process 
--- so we usually such type of repeted works using stored_procedures 
-CREATE OR REPLACE PROCEDURE add_return_records(p_return_id VARCHAR(10), p_issued_id VARCHAR(10))
-LANGUAGE plpgsql
-AS $$
-DECLARE
-    i_isbn VARCHAR(50);
-    i_book_name VARCHAR(80);
-begin 
--- our logic is -- first create a return row when a book is returned and we need to submit the parameters as a row
-
-
-insert into return_table (return_id, issued_id,return_date)
-
-values 
-('p_return_id','p_issued_id ',current_date);
-
-select issued_book_isbn ,issued_book_name 
-into 
-i_isbn , i_book_name from issued_status
-where issued_id= p_issued_id;
-
-
-update books
-set status = 'yes '
-where isbn= i_isbn ;
-
-  RAISE NOTICE 'Thank you for returning the book: %', i_book_name;
-
-end
-$$;
-
-call procedure ('Rs123,IS134');
-
-
---QUESTION -15 Branch Performance Report
+--QUESTION -14 Branch Performance Report
 Create a query that generates a performance report for each branch, showing the number of books issued, the number of books returned, and the total revenue generated from book rentals.
 
 select * from  branch
@@ -243,7 +206,7 @@ GROUP BY b.branch_id, b.manager_id;
 SELECT * FROM branch_reports;
 
 
-QUESTION 16--CTAS: Create a Table of Active Members
+QUESTION 15--CTAS: Create a Table of Active Members
 Use the CREATE TABLE AS (CTAS) statement to create a new table active_members containing members who have issued at least one book in the last 2 months.
 
 create table active_members as
@@ -257,7 +220,7 @@ where member_id in (
 select * from active_members
 
 
---QUESTION -17 :Find Employees with the Most Book Issues Processed
+--QUESTION -16 :Find Employees with the Most Book Issues Processed
 Write a query to find the top 3 employees who have processed the most book issues. Display the employee name, number of books processed, and their branch.
 
 select 
